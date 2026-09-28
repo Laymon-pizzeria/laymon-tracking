@@ -1,0 +1,20 @@
+{
+  "name": "laymon-tracking",
+  "version": "1.0.0",
+  "description": "Página de tracking con marca Laymon para pedidos de delivery (Mexy)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "node-fetch": "^2.7.0"
+  },
+  "license": "UNLICENSED"
+}

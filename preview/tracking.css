@@ -1,0 +1,295 @@
+/* ============================================
+   LAYMON TRACKING — Diseño de marca
+   Rojo #EA1D3B / Blanco / Negro
+   Vibe: artesanal, cercano, ligeramente rockero
+   Tipografías oficiales: Brick (display/rock) + Chelsea Market (texto)
+   ============================================ */
+
+@font-face {
+  font-family: 'Brick';
+  src: url('fonts/Brick.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --lm-red: #EA1D3B;
+  --lm-black: #141414;
+  --lm-white: #FFFFFF;
+  --lm-cream: #FAF7F2;
+  --lm-gray: #6B6B6B;
+  --lm-border: #EAE5DD;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--lm-cream);
+  color: var(--lm-black);
+  font-family: 'Chelsea Market', cursive, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- HEADER ---------- */
+.lm-header {
+  background: var(--lm-black);
+  padding: 14px 20px;
+  border-bottom: 4px solid var(--lm-red);
+}
+
+.lm-header__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lm-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.lm-tagline {
+  font-family: 'Brick', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  color: var(--lm-white);
+}
+
+/* ---------- MAIN ---------- */
+.lm-main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 8px;
+}
+
+/* ---------- STATUS ---------- */
+.lm-status {
+  margin-bottom: 18px;
+}
+
+.lm-status__eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--lm-red);
+  margin: 0 0 6px;
+}
+
+.lm-status__message {
+  font-family: 'Chelsea Market', cursive;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.4;
+  margin: 0;
+  color: var(--lm-black);
+}
+
+/* ---------- MAP ---------- */
+.lm-map {
+  margin-bottom: 22px;
+}
+
+.lm-map__frame {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 3px solid var(--lm-black);
+  aspect-ratio: 4 / 5;
+  background: #EFEFEF;
+  box-shadow: 0 6px 0 var(--lm-black);
+}
+
+.lm-map__frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Pizza en llamas flotando sobre el mapa — el fuego no gira, parpadea */
+.lm-pizza {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 58px;
+  height: 81px; /* respeta el aspect ratio real del asset: 83.725 x 116.644 */
+  margin: -40.5px 0 0 -29px;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.35));
+  animation: lm-pizza-float 3.2s ease-in-out infinite,
+             lm-pizza-wobble 4.4s ease-in-out infinite;
+}
+
+.lm-pizza__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* Cada llama parpadea con su propio timing para verse orgánica, no sincronizada */
+.lm-flame {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.lm-flame-a {
+  animation: lm-flame-flicker-a 0.9s ease-in-out infinite alternate;
+}
+
+.lm-flame-b {
+  animation: lm-flame-flicker-b 0.7s ease-in-out infinite alternate;
+  animation-delay: -0.2s;
+}
+
+.lm-flame-c {
+  animation: lm-flame-flicker-c 0.6s ease-in-out infinite alternate;
+  animation-delay: -0.4s;
+}
+
+@keyframes lm-pizza-float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -8px; }
+}
+
+@keyframes lm-pizza-wobble {
+  0%, 100% { rotate: -3deg; }
+  50%      { rotate: 3deg; }
+}
+
+@keyframes lm-flame-flicker-a {
+  0%   { transform: scaleY(1) scaleX(1) skewX(0deg); }
+  30%  { transform: scaleY(1.05) scaleX(0.97) skewX(-1.5deg); }
+  60%  { transform: scaleY(0.94) scaleX(1.03) skewX(1deg); }
+  100% { transform: scaleY(1.03) scaleX(0.98) skewX(-0.5deg); }
+}
+
+@keyframes lm-flame-flicker-b {
+  0%   { transform: scaleY(1) skewX(0deg); }
+  50%  { transform: scaleY(0.92) skewX(2deg); }
+  100% { transform: scaleY(1.06) skewX(-1.5deg); }
+}
+
+@keyframes lm-flame-flicker-c {
+  0%   { transform: scaleY(1) skewX(0deg); }
+  50%  { transform: scaleY(1.08) skewX(-2deg); }
+  100% { transform: scaleY(0.93) skewX(1.5deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lm-pizza,
+  .lm-flame-a,
+  .lm-flame-b,
+  .lm-flame-c {
+    animation: none;
+  }
+}
+
+/* ---------- PROMO ---------- */
+.lm-promo {
+  background: var(--lm-white);
+  border: 2px solid var(--lm-black);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 0 var(--lm-black);
+}
+
+.lm-promo__img {
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  background-color: #DDD;
+}
+
+.lm-promo__body {
+  padding: 16px 18px;
+}
+
+.lm-promo__eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--lm-red);
+  margin: 0 0 4px;
+}
+
+.lm-promo__title {
+  font-family: 'Brick', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.3px;
+  margin: 0 0 6px;
+  color: var(--lm-black);
+}
+
+.lm-promo__text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--lm-gray);
+  margin: 0 0 12px;
+}
+
+.lm-promo__cta {
+  display: inline-block;
+  background: var(--lm-red);
+  color: var(--lm-white);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  transition: transform 0.15s ease;
+}
+
+.lm-promo__cta:active {
+  transform: scale(0.96);
+}
+
+/* ---------- SUGGESTION ---------- */
+.lm-suggestion {
+  text-align: center;
+  padding: 14px 10px 22px;
+}
+
+.lm-suggestion__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--lm-gray);
+  margin: 0 0 4px;
+}
+
+.lm-suggestion__text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--lm-black);
+  margin: 0;
+}
+
+/* ---------- FOOTER ---------- */
+.lm-footer {
+  text-align: center;
+  padding: 18px 20px 28px;
+  font-size: 12px;
+  color: var(--lm-gray);
+  border-top: 1px solid var(--lm-border);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (min-width: 480px) {
+  .lm-status__message { font-size: 22px; }
+  .lm-map__frame { aspect-ratio: 16 / 11; }
+}

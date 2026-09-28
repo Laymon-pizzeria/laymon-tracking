@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Tu pedido va en camino | Laymon Pizzería Artesanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tracking.css">
+<style>
+  /* Solo para este preview: aviso de que es una simulación */
+  .lm-preview-note {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #1A1A1A;
+    color: #F3C969;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 8px 16px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+  <div class="lm-preview-note">PREVIEW ESTÁTICO — contenido de ejemplo, no conectado al Sheet real</div>
+
+  <header class="lm-header">
+    <div class="lm-header__inner">
+      <img class="lm-logo" src="img/logo-blanco-rojo.png" alt="Laymon Pizzería Artesanal" width="56" height="56">
+      <div class="lm-tagline">Pizzería Artesanal</div>
+    </div>
+  </header>
+
+  <main class="lm-main">
+
+    <section class="lm-status">
+      <p class="lm-status__eyebrow">Pedido en camino</p>
+      <h1 class="lm-status__message">Aquí puedes ver la ubicación del repartidor que lleva tu pedido. Tu pedido va en camino, puedes ver el tracking del repartidor en tiempo real aquí:</h1>
+    </section>
+
+    <section class="lm-map">
+      <div class="lm-map__frame">
+        <iframe
+          src="https://laymon.mxy.mx/rastreo/b0009f6c839f0e1cfff3ae6ccab2754187534594b0ac7d18"
+          title="Tracking del repartidor"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+        <div class="lm-pizza" aria-hidden="true">
+          <svg viewBox="0 0 83.725 116.644" class="lm-pizza__svg">
+            <g>
+              <polygon points="47.869 41.889 24.313 49.975 7.552 64.8 .757 76.93 26.125 76.481 27.031 83.669 37.45 87.712 49.228 83.669 56.023 86.813 56.023 93.103 58.288 101.639 62.365 100.74 65.537 94.9 67.802 97.146 69.161 102.088 70.067 112.87 72.785 115.116 75.503 113.319 76.409 105.233 80.939 100.291 80.486 94.451 67.349 64.8 56.929 48.627 47.869 41.889" fill="#fff" stroke-width="0"/>
+              <polygon class="lm-flame lm-flame-a" points="17.735 54.189 14.353 48.327 17.059 42.013 25.402 34.572 30.814 26.229 31.716 23.297 34.196 32.768 33.519 35.925 38.255 34.797 42.088 25.778 45.47 14.503 52.01 6.611 59.676 2.552 53.814 14.954 55.617 24.65 61.48 26.003 64.412 19.013 65.764 9.993 71.853 6.386 70.274 12.925 74.108 23.974 75.686 32.317 70.725 39.984 68.696 41.111 75.461 42.464 80.647 38.18 81.098 47.876 75.911 58.474 68.019 63.209 50.431 40.885 34.647 46.523 17.735 54.189" fill="#ea1d3b" stroke-width="0"/>
+              <path class="lm-flame lm-flame-b" d="m30.814,82.526c.752-.451,3.157-5.412,3.157-5.412,0,0,1.052-7.817,1.203-8.268s3.908-1.954,3.908-1.954l1.353,4.359,4.059,1.052,1.654-4.66,1.353-8.719,3.758-3.007-.15,5.863,3.157,7.065-.752,9.02-6.163,8.719-12.327.752-8.118-3.157,3.908-1.654Z" fill="#ea1d3b" stroke-width="0"/>
+              <path class="lm-flame lm-flame-c" d="m17.585,30.062s2.255-4.51,2.105-4.961-3.908-7.366-3.908-7.366c0,0,1.503-5.261,1.654-5.712s3.908-2.255,3.908-2.255c0,0,.601,3.758,1.203,4.209s2.856,4.209,2.856,4.209v5.412l-3.007,4.961-4.81,1.503Z" fill="#ea1d3b" stroke-width="0"/>
+              <path d="m30.926,78.956c-3.608-1.127-15.559-2.255-29.426-2.142,0,0,7.216-18.49,24.353-26.608,17.137-8.118,24.353-8.569,24.353-8.569,0,0,16.686,20.294,22.549,32.47,5.863,12.176,9.471,27.51,9.471,27.51,0,0-3.232,0-4.059,1.804s-2.856,7.14-2.931,9.471-5.637,3.608-5.712,0-.075-9.696-.075-12.853-5.562-6.163-6.013-2.18-6.69,5.637-6.614,1.353.451-8.343-.451-9.922-6.84-4.961-6.84-4.961" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <path d="m22.471,78.392s4.51,8.794,12.402,9.02,16.461-1.015,18.716-11.387-2.931-10.373-2.48-14.657,2.819-6.201,2.819-6.201c0,0-6.652-.902-7.216,6.539s-1.353,11.5-3.721,11.274-4.735-2.593-2.255-5.863c0,0-5.074-1.127-5.975,5.074s-1.015,9.922-4.51,10.147c-3.495.225-7.779-3.946-7.779-3.946Z" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <path d="m15.029,77.039s2.48-9.809,15.221-17.25,25.819-10.636,25.819-10.636" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <path d="m18.299,54.49c-.564,0-4.735-3.721-4.059-8.005s11.838-10.823,14.206-15.108,3.157-8.569,3.157-8.569c0,0,2.706,5.863,2.706,8.569s-.225,5.299-3.495,7.667c0,0,7.667-1.24,9.809-7.892s1.917-13.304,6.539-19.054S55.392,3.078,61.367,1.5c0,0-7.328,7.441-7.667,17.475s9.132,10.485,10.26,2.593.451-14.319,11.049-17.701c0,0-5.299,5.863-4.623,11.387s5.975,8.005,5.299,15.108c-.676,7.103-8.005,10.823-8.005,10.823,0,0,8.118,4.397,12.515-2.48,0,0,2.255,2.931.451,10.26-1.804,7.328-7.441,13.868-13.98,14.544" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <path d="m16.401,31.947c-.423.427,8.892-2.246,9.254-9.898s-6.163-7.816-3.864-13.144c0,0-6.576,3.555-5.664,8.745s8.263,6.241.275,14.297Z" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <path d="m63.434,88.539s9.621,2.255,18.791,13.078" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <line x1="16.232" y1="62.532" x2="19.238" y2="62.833" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <line x1="23.448" y1="56.068" x2="27.356" y2="56.67" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+              <line x1="33.069" y1="51.258" x2="37.278" y2="51.408" fill="none" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="lm-promo">
+      <div class="lm-promo__img" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800')"></div>
+      <div class="lm-promo__body">
+        <p class="lm-promo__eyebrow">Esta semana en Laymon</p>
+        <h2 class="lm-promo__title">Pizza Carnívora</h2>
+        <p class="lm-promo__text">Doble pepperoni, salchicha italiana y tocino ahumado. Disponible solo esta semana.</p>
+        <a class="lm-promo__cta" href="https://laymonpizzeria.getjusto.com/pedir" target="_blank" rel="noopener">Ver más</a>
+      </div>
+    </section>
+
+    <section class="lm-suggestion">
+      <p class="lm-suggestion__label">Mientras esperas</p>
+      <p class="lm-suggestion__text" id="lm-suggestion-text">¿Ya probaste nuestra Focaccia del día?</p>
+    </section>
+
+  </main>
+
+  <footer class="lm-footer">
+    <p>Hecho con horno de piso y mucha necedad — Laymon Pizzería Artesanal</p>
+  </footer>
+
+  <script>
+    window.__LM_SUGGESTIONS__ = [
+      "¿Ya probaste nuestra Focaccia del día?",
+      "Agrega una Coca de vidrio bien fría a tu pedido",
+      "Pregunta por el postre de temporada"
+    ];
+  </script>
+  <script src="tracking.js"></script>
+</body>
+</html>
