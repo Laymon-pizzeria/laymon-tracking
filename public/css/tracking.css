@@ -1,8 +1,5 @@
 /* ============================================
    LAYMON TRACKING — Diseño de marca
-   Rojo #EA1D3B / Blanco / Negro
-   Vibe: artesanal, cercano, ligeramente rockero
-   Tipografías oficiales: Brick (display/rock) + Chelsea Market (texto)
    ============================================ */
 
 @font-face {
@@ -19,6 +16,7 @@
   --lm-white: #FFFFFF;
   --lm-cream: #FAF7F2;
   --lm-gray: #6B6B6B;
+  --lm-gray-light: #F3F4F6;
   --lm-border: #EAE5DD;
   --radius: 14px;
 }
@@ -28,17 +26,40 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--lm-cream);
+  background: var(--lm-white);
   color: var(--lm-black);
   font-family: 'Chelsea Market', cursive, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* ---------- HEADER ---------- */
 .lm-header {
-  background: var(--lm-black);
-  padding: 14px 20px;
+  background: var(--lm-red);
   border-bottom: 4px solid var(--lm-red);
+}
+
+.lm-header__promo-bar {
+  color: var(--lm-white);
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.lm-header__promo-bar__track {
+  display: inline-block;
+  padding-left: 100%;
+  animation: lm-marquee 16s linear infinite;
+}
+
+@keyframes lm-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 .lm-header__inner {
@@ -46,15 +67,23 @@ html, body {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  padding: 2px 20px 18px;
+}
+
+.lm-logo-link {
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
 }
 
 .lm-logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
+  width: auto;
+  height: 92px;
+  max-width: 280px;
   flex-shrink: 0;
   display: block;
+  object-fit: contain;
 }
 
 .lm-tagline {
@@ -62,6 +91,79 @@ html, body {
   font-size: 15px;
   letter-spacing: 0.5px;
   color: var(--lm-white);
+}
+
+/* ===== glitch VHS con split de color para el logo del header ===== */
+.laymon-vhs-wrap {
+  --lg-d: 5px;
+  --lg-o: 0.95;
+  --lg-t: 7s;
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  flex-shrink: 0;
+}
+.laymon-vhs-wrap img {
+  display: block;
+  position: relative;
+  z-index: 2;
+  animation: laymon-vhs-shake var(--lg-t) steps(1, end) infinite;
+}
+.laymon-vhs-ghost {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: var(--laymon-logo-url);
+          mask-image: var(--laymon-logo-url);
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  opacity: 0;
+  pointer-events: none;
+}
+.laymon-vhs-ghost.c { background: #00F0FF; z-index: 3; animation: laymon-vhs-cyan    var(--lg-t) steps(1, end) infinite; }
+.laymon-vhs-ghost.y { background: #FFE600; z-index: 1; animation: laymon-vhs-yellow  var(--lg-t) steps(1, end) infinite; }
+.laymon-vhs-ghost.m { background: #FF2BD6; z-index: 1; animation: laymon-vhs-magenta var(--lg-t) steps(1, end) infinite; }
+
+@keyframes laymon-vhs-shake {
+  0%    { transform: none; }
+  44%   { transform: translateX(-2px); }
+  45%   { transform: none; }
+  82%   { transform: translateX(calc(var(--lg-d) * -0.4)) skewX(-6deg); }
+  83.5% { transform: translateX(calc(var(--lg-d) * 0.3)); }
+  85%   { transform: translate(-1px, 1px) skewX(4deg); }
+  86.5% { transform: translateX(calc(var(--lg-d) * 0.5)); }
+  88%   { transform: none; }
+  100%  { transform: none; }
+}
+@keyframes laymon-vhs-cyan {
+  0%    { opacity: 0; transform: none; clip-path: inset(0); }
+  44%   { opacity: var(--lg-o); transform: translateX(calc(var(--lg-d) * -0.8)); clip-path: inset(25% 0 55% 0); }
+  45%   { opacity: 0; transform: none; clip-path: inset(0); }
+  82%   { opacity: var(--lg-o); transform: translateX(calc(var(--lg-d) * -1));   clip-path: inset(0 0 58% 0); }
+  83.5% { opacity: var(--lg-o); transform: translate(calc(var(--lg-d) * -0.6), 1px); clip-path: inset(38% 0 28% 0); }
+  85%   { opacity: var(--lg-o); transform: translateX(calc(var(--lg-d) * -1.3)); clip-path: inset(72% 0 4% 0); }
+  86.5% { opacity: var(--lg-o); transform: translateX(calc(var(--lg-d) * -0.5)); clip-path: inset(8% 0 48% 0); }
+  88%   { opacity: 0; transform: none; clip-path: inset(0); }
+  100%  { opacity: 0; transform: none; clip-path: inset(0); }
+}
+@keyframes laymon-vhs-yellow {
+  0%    { opacity: 0; transform: none; clip-path: inset(0); }
+  44%   { opacity: var(--lg-o); transform: translateX(calc(var(--lg-d) * 0.8)); clip-path: inset(55% 0 20% 0); }
+  45%   { opacity: 0; transform: none; clip-path: inset(0); }
+  82%   { opacity: var(--lg-o); transform: translateX(var(--lg-d));             clip-path: inset(45% 0 12% 0); }
+  83.5% { opacity: var(--lg-o); transform: translate(calc(var(--lg-d) * 1.2), -1px); clip-path: inset(5% 0 70% 0); }
+  85%   { opacity: var(--lg-o); transform: translateX(calc(var(--lg-d) * 0.6)); clip-path: inset(30% 0 35% 0); }
+  86.5% { opacity: var(--lg-o); transform: translateX(calc(var(--lg-d) * 1.4)); clip-path: inset(62% 0 10% 0); }
+  88%   { opacity: 0; transform: none; clip-path: inset(0); }
+  100%  { opacity: 0; transform: none; clip-path: inset(0); }
+}
+@keyframes laymon-vhs-magenta {
+  0%    { opacity: 0; transform: none; }
+  82%   { opacity: var(--lg-o); transform: translate(calc(var(--lg-d) * 0.5), calc(var(--lg-d) * 0.4)); }
+  85%   { opacity: var(--lg-o); transform: translate(calc(var(--lg-d) * -0.5), calc(var(--lg-d) * -0.3)); }
+  87.5% { opacity: 0; transform: none; }
+  100%  { opacity: 0; transform: none; }
 }
 
 /* ---------- MAIN ---------- */
@@ -72,10 +174,7 @@ html, body {
 }
 
 /* ---------- STATUS ---------- */
-.lm-status {
-  margin-bottom: 18px;
-}
-
+.lm-status { margin-bottom: 18px; }
 .lm-status__eyebrow {
   font-size: 12px;
   font-weight: 700;
@@ -84,7 +183,6 @@ html, body {
   color: var(--lm-red);
   margin: 0 0 6px;
 }
-
 .lm-status__message {
   font-family: 'Chelsea Market', cursive;
   font-weight: 400;
@@ -95,10 +193,7 @@ html, body {
 }
 
 /* ---------- MAP ---------- */
-.lm-map {
-  margin-bottom: 22px;
-}
-
+.lm-map { margin-bottom: 22px; animation: fadeIn 0.4s ease-in; }
 .lm-map__frame {
   position: relative;
   border-radius: var(--radius);
@@ -108,187 +203,89 @@ html, body {
   background: #EFEFEF;
   box-shadow: 0 6px 0 var(--lm-black);
 }
-
-.lm-map__frame iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
-
-/* Pizza en llamas flotando sobre el mapa — el fuego no gira, parpadea */
-.lm-pizza {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 58px;
-  height: 81px; /* respeta el aspect ratio real del asset: 83.725 x 116.644 */
-  margin: -40.5px 0 0 -29px;
-  pointer-events: none;
-  z-index: 5;
-  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.35));
-  animation: lm-pizza-float 3.2s ease-in-out infinite,
-             lm-pizza-wobble 4.4s ease-in-out infinite;
-}
-
-.lm-pizza__svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: visible;
-}
-
-/* Cada llama parpadea con su propio timing para verse orgánica, no sincronizada */
-.lm-flame {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-}
-
-.lm-flame-a {
-  animation: lm-flame-flicker-a 0.9s ease-in-out infinite alternate;
-}
-
-.lm-flame-b {
-  animation: lm-flame-flicker-b 0.7s ease-in-out infinite alternate;
-  animation-delay: -0.2s;
-}
-
-.lm-flame-c {
-  animation: lm-flame-flicker-c 0.6s ease-in-out infinite alternate;
-  animation-delay: -0.4s;
-}
-
-@keyframes lm-pizza-float {
-  0%, 100% { translate: 0 0; }
-  50%      { translate: 0 -8px; }
-}
-
-@keyframes lm-pizza-wobble {
-  0%, 100% { rotate: -3deg; }
-  50%      { rotate: 3deg; }
-}
-
-@keyframes lm-flame-flicker-a {
-  0%   { transform: scaleY(1) scaleX(1) skewX(0deg); }
-  30%  { transform: scaleY(1.05) scaleX(0.97) skewX(-1.5deg); }
-  60%  { transform: scaleY(0.94) scaleX(1.03) skewX(1deg); }
-  100% { transform: scaleY(1.03) scaleX(0.98) skewX(-0.5deg); }
-}
-
-@keyframes lm-flame-flicker-b {
-  0%   { transform: scaleY(1) skewX(0deg); }
-  50%  { transform: scaleY(0.92) skewX(2deg); }
-  100% { transform: scaleY(1.06) skewX(-1.5deg); }
-}
-
-@keyframes lm-flame-flicker-c {
-  0%   { transform: scaleY(1) skewX(0deg); }
-  50%  { transform: scaleY(1.08) skewX(-2deg); }
-  100% { transform: scaleY(0.93) skewX(1.5deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lm-pizza,
-  .lm-flame-a,
-  .lm-flame-b,
-  .lm-flame-c {
-    animation: none;
-  }
-}
-
+.lm-map__frame iframe { width: 100%; height: 100%; border: 0; display: block; }
 /* ---------- PROMO ---------- */
-.lm-promo {
-  background: var(--lm-white);
-  border: 2px solid var(--lm-black);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 18px;
-  box-shadow: 0 4px 0 var(--lm-black);
-}
-
-.lm-promo__img {
-  height: 140px;
-  background-size: cover;
-  background-position: center;
-  background-color: #DDD;
-}
-
-.lm-promo__body {
-  padding: 16px 18px;
-}
-
+.lm-promo { margin-bottom: 18px; }
 .lm-promo__eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: var(--lm-red);
-  margin: 0 0 4px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.2px; color: var(--lm-red); margin: 0 0 8px;
 }
-
+.lm-promo__card {
+  position: relative; display: flex; align-items: center; gap: 14px;
+  background: var(--lm-white); border: 2px solid var(--lm-black);
+  border-radius: var(--radius); padding: 12px; text-decoration: none;
+  box-shadow: 0 4px 0 var(--lm-black); transition: transform 0.15s ease;
+}
+.lm-promo__card:active { transform: scale(0.98); }
+.lm-promo__img {
+  width: 76px; height: 76px; flex-shrink: 0; border-radius: 10px;
+  background-size: cover; background-position: center; background-color: #DDD;
+}
+.lm-promo__body { flex: 1; min-width: 0; padding-right: 36px; }
 .lm-promo__title {
-  font-family: 'Brick', sans-serif;
-  font-size: 26px;
-  letter-spacing: 0.3px;
-  margin: 0 0 6px;
-  color: var(--lm-black);
+  font-family: 'Chelsea Market', cursive; font-weight: 400; font-size: 17px;
+  margin: 0 0 4px; color: var(--lm-black);
 }
-
 .lm-promo__text {
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--lm-gray);
-  margin: 0 0 12px;
+  font-size: 13px; line-height: 1.4; color: var(--lm-gray); margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
-
 .lm-promo__cta {
-  display: inline-block;
-  background: var(--lm-red);
-  color: var(--lm-white);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 10px 18px;
-  border-radius: 999px;
-  transition: transform 0.15s ease;
-}
-
-.lm-promo__cta:active {
-  transform: scale(0.96);
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  width: 30px; height: 30px; border-radius: 50%; background: var(--lm-red);
+  color: var(--lm-white); font-size: 20px; line-height: 1;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;
 }
 
 /* ---------- SUGGESTION ---------- */
-.lm-suggestion {
-  text-align: center;
-  padding: 14px 10px 22px;
-}
-
+.lm-suggestion { text-align: center; padding: 14px 10px 22px; }
 .lm-suggestion__label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: var(--lm-gray);
-  margin: 0 0 4px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.2px; color: var(--lm-gray); margin: 0 0 4px;
+}
+.lm-suggestion__text { font-size: 15px; font-weight: 600; color: var(--lm-black); margin: 0; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-.lm-suggestion__text {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--lm-black);
-  margin: 0;
+/* ---------- WHATSAPP FLOTANTE ---------- */
+.lm-whatsapp {
+  position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px;
+  background: #25D366; border: 0; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 999; color: white; text-decoration: none;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.lm-whatsapp:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+.lm-whatsapp::before {
+  content: ''; position: absolute; top: -8px; left: -8px; right: -8px; bottom: -8px;
+  border: 2px solid rgba(37, 211, 102, 0.5); border-radius: 50%;
+  animation: lm-halo-pulse 2s ease-in-out infinite;
+}
+.lm-whatsapp svg { width: 28px; height: 28px; position: relative; z-index: 1; }
+
+@keyframes lm-halo-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
 }
 
 /* ---------- FOOTER ---------- */
 .lm-footer {
-  text-align: center;
-  padding: 18px 20px 28px;
-  font-size: 12px;
-  color: var(--lm-gray);
-  border-top: 1px solid var(--lm-border);
+  text-align: center; padding: 28px 20px 32px; font-size: 12px; color: var(--lm-white);
+  background: var(--lm-red);
 }
+.lm-footer__nav { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 16px; }
+.lm-footer__link { color: var(--lm-white); text-decoration: none; font-weight: 600; font-size: 13px; transition: color 0.2s ease; }
+.lm-footer__link:hover { color: var(--lm-black); }
+.lm-footer__tagline {
+  font-family: 'Chelsea Market', cursive; font-weight: 400; font-size: 14px; letter-spacing: 0.2px; color: var(--lm-white);
+  margin: 0 auto 10px; max-width: 420px; line-height: 1.4;
+}
+.lm-footer__credit { margin: 0; font-size: 11px; color: rgba(255, 255, 255, 0.8); }
 
-/* ---------- RESPONSIVE ---------- */
 @media (min-width: 480px) {
   .lm-status__message { font-size: 22px; }
   .lm-map__frame { aspect-ratio: 16 / 11; }

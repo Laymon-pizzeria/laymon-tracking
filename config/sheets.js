@@ -31,6 +31,7 @@ const SHEET_CACHE_MINUTES = parseFloat(process.env.SHEET_CACHE_MINUTES || '5');
 const FALLBACK_CONTENT = {
   mensaje_principal:
     'Aquí puedes ver la ubicación del repartidor que lleva tu pedido. Tu pedido va en camino, puedes ver el tracking en tiempo real aquí:',
+  barra_promo: 'Envío gratis en compras de $600 o más 🔥',
   promo_titulo: '',
   promo_texto: '',
   promo_imagen: '',
@@ -96,6 +97,7 @@ function parseCSV(text) {
 function rowsToContent(rows) {
   const content = {
     mensaje_principal: '',
+    barra_promo: '',
     promo_titulo: '',
     promo_texto: '',
     promo_imagen: '',
